@@ -8,8 +8,7 @@ func init() {
 	// TODO: modify to myself repo
 	Templates = map[string]string{
 		"ts":   "https://github.com/GodlessLiu/starter-ts.git",
-		"js":   "https://github.com/GoAdminGroup/themes/tree/master/js",
-		"nuxt": "https://github.com/GoAdminGroup/themes/tree/master/nuxt",
+		"next": "https://github.com/GodlessLiu/starter-next.git",
 	}
 }
 
