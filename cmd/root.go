@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/GodlessLiu/tpl-cli/internal"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +18,7 @@ var rootCmd = &cobra.Command{
 	Short: "tpl is a tool for generating code",
 	Long:  "tpl is a tool generate code based on templates, powered by go",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("tpl is a tool for generating code")
+		internal.ShowLogo()
 	},
 }
 
