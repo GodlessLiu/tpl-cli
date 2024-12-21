@@ -32,6 +32,7 @@ func InitLogic() {
 		Progress: os.Stdout,
 	}); err != nil {
 		pterm.Error.Println(err.Error())
+		panic(err.Error())
 	}
 	pterm.Info.Printfln("download template successfully, please check the directory %s", conf.Dirname)
 }
