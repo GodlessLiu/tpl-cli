@@ -1,15 +1,22 @@
 package internal
 
 import (
-	"fmt"
+	"os"
+	"path"
 
 	"github.com/GodlessLiu/tpl-cli/config"
+	"github.com/go-git/go-git/v5"
 	"github.com/pterm/pterm"
 )
 
 type InitConfig struct {
 	Dirname      string
 	TemplateName string
+}
+
+func getDirPath(dirname string) string {
+	pa, _ := os.Getwd()
+	return path.Join(pa, dirname)
 }
 
 func InitLogic() {
@@ -19,5 +26,12 @@ func InitLogic() {
 
 	options := config.GetTemplateKeys()
 	conf.TemplateName, _ = pterm.DefaultInteractiveSelect.WithOptions(options).WithDefaultText("Please select a template: ").Show()
-	fmt.Println(conf)
+
+	if _, err := git.PlainClone(getDirPath(conf.Dirname), false, &git.CloneOptions{
+		URL:      config.GetTemplate(conf.TemplateName),
+		Progress: os.Stdout,
+	}); err != nil {
+		pterm.Error.Println(err.Error())
+	}
+	pterm.Info.Printfln("download template successfully, please check the directory %s", conf.Dirname)
 }
